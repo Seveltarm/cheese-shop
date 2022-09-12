@@ -1,0 +1,9 @@
+<p-toolbar>
+    <h2>{{ 'HOME.TITLE' | translate }}</h2>
+    <div class="p-toolbar-group-right">
+        <select #langSelect (change)="translate.use(langSelect.value)">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
+    </div>
+</p-toolbar>
+<button *ngIf="routerLink === '/order-form' || routerLink === '/order-list'" pButton pRipple type="button" (click)="back()" label="Back" class="p-button-raised"></button>

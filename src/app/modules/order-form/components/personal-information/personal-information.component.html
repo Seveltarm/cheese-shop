@@ -1,0 +1,18 @@
+<section [formGroup]="formControlInformation" class="grid">
+    <div class="col-10">
+        <div class="grid">
+            <div class="col-6 p-inputgroup">
+                <label class="p-inputgroup-addon" for="name">
+                    {{ 'ORDER-FORM.PERSONAL-DATA.NAME' | translate }}
+                </label>
+                <input class="p-inputtext" pInputText type="text" formControlName="name">
+            </div>
+            <div class="col-6 p-inputgroup">
+                <label class="p-inputgroup-addon" for="surname">
+                    {{ 'ORDER-FORM.PERSONAL-DATA.SURNAME' | translate }}
+                </label>
+                <input class="p-inputtext" pInputText type="text" formControlName="surname">
+            </div>
+        </div>
+    </div>
+</section>

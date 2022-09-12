@@ -1,0 +1,46 @@
+<section [formGroup]="formControlInformation">
+    <div class="grid">
+        <div class="col-10 p-inputgroup">
+            <label class="p-inputgroup-addon" for="street">
+                {{ 'ORDER-FORM.ADDRESS.STREET' | translate }}
+            </label>
+            <input class="p-inputtext" pInputText type="text" formControlName="street">
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-10">
+            <div class="grid">
+                <div class="col-8 p-inputgroup">
+                    <label class="p-inputgroup-addon" for="houseNumber">
+                        {{ 'ORDER-FORM.ADDRESS.HOUSE-NUMBER' | translate }}
+                    </label>
+                    <input class="p-inputtext" pInputText type="text" formControlName="houseNumber">
+                </div>
+                <div class="col-4 p-inputgroup">
+                    <label class="p-inputgroup-addon" for="flatNumber">
+                        {{ 'ORDER-FORM.ADDRESS.FLAT-NUMBER' | translate}}
+                    </label>
+                    <input class="p-inputtext" pInputText type="text" formControlName="flatNumber">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-10">
+            <div class="grid">
+                <div class="col-4 p-inputgroup">
+                    <label class="p-inputgroup-addon" for="zipCode">
+                        {{ 'ORDER-FORM.ADDRESS.ZIP-CODE' | translate }}
+                    </label>
+                    <p-inputMask class="p-inputtext w-full" type="text" mask="99-999" formControlName="zipCode"></p-inputMask>
+                </div>
+                <div class="col-8 p-inputgroup">
+                    <label class="p-inputgroup-addon" for="city">
+                        {{ 'ORDER-FORM.ADDRESS.CITY' | translate }}
+                    </label>
+                    <input class="p-inputtext" pInputText type="text" formControlName="city">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

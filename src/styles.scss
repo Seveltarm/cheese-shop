@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+}
+
+
+.order-form {
+    p-inputmask.p-element.p-inputtext {
+        padding: 0;
+        input.p-inputtext.p-component.p-element.p-inputmask {
+            width: 100%;
+            border: 0;
+        }
+    }    
+
+    .p-inputgroup .p-inputwrapper>.p-component {
+        width: 100% !important;
+        border: 0;
+    }
+
+    .p-inputgroup > .p-inputwrapper:last-child > .p-component > .p-inputtext {
+        width: 100%;
+        border: 0;
+    }
+
+    p-dropdown.p-element.p-inputwrapper.p-inputtext.p-inputwrapper-filled {
+        padding: 0;
+    }
+
+    p-inputnumber.p-element.p-inputwrapper.p-inputtext {
+        padding: 0;
+    }
+}    

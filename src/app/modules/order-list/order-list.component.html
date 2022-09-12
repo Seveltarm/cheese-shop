@@ -1,0 +1,70 @@
+<p-table [value]="products" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>
+                <div class="flex justify-content-center align-items-center">
+                    City
+                    <p-columnFilter type="text" field="city"></p-columnFilter>
+                </div>
+            </th>
+            <th>
+                <div class="flex justify-content-center align-items-center">
+                    Number of cheeses
+                    <p-columnFilter type="text" field="itemsNumber"></p-columnFilter>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td class="text-center">{{ product.city }}</td>
+            <td class="text-center">{{ product.itemsNumber }}</td>
+            <button pButton pRipple type="button" (click)="checkOrder(product.id)" label="Check" class="p-button-raised"></button>
+        </tr>
+        <p-dialog header="Cheese order" [(visible)]="product.display" [modal]="true" [draggable]="false" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+            <div class="grid">
+                <div class="col-12">
+                    <h3>Address</h3>
+                </div>
+                <div class="col-12">
+                    {{ product.street }} {{ product.houseNumber }}<span *ngIf="product.flatNumber">/{{ product.flatNumber }}</span>
+                </div>
+                <div class="col-12">
+                    {{ product.zipCode }}, {{ product.city }}
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12">
+                    <h3>Cheese</h3>
+                </div>
+                <div class="col-12">
+                    Kind of cheese: {{ product.cheese }} 
+                </div>
+                <div class="col-12">
+                    Size: {{ product.size }}
+                </div>
+                <div class="col-12">
+                    Type:  {{ product.type }}
+                </div>
+                <div class="col-12">
+                    Quantity:  {{ product.itemsNumber }}
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12">
+                    <h3>Add-ons</h3>
+                </div>
+                <div class="col-12">
+                    Kind of add-on: {{ product.addOnName }}
+                </div>
+                <div class="col-12">
+                    Quantity: {{ product.addOnNumber }}
+                </div>
+            </div>    
+            <ng-template pTemplate="footer">
+                <p-button (click)="product.display=false" label="OK" class="p-button-text"></p-button>
+            </ng-template>
+        </p-dialog>
+    </ng-template>
+</p-table>

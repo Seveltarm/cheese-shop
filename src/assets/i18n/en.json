@@ -1,0 +1,36 @@
+{
+  "HOME": {
+    "TITLE": "No one has as many friends as the man with many cheeses."
+  },
+  "ORDER-FORM": {
+    "HEADERS": {
+      "PERSONAL_INFORMATION": "Personal Information",
+      "ADDRESS": "Address",
+      "CHEESE": "Cheese",
+      "ADD_ON": "Add-on",
+      "PRICE": "Price",
+      "SUMMARY": "Summary"
+    },
+    "PERSONAL-DATA": {
+      "NAME": "Name*",
+      "SURNAME": "Surname*"
+    },
+    "ADDRESS": {
+      "STREET": "Street*",
+      "HOUSE-NUMBER": "House Number*",
+      "FLAT-NUMBER": "Flat number",
+      "ZIP-CODE": "Zip*",
+      "CITY": "City*"
+    },  
+    "CHEESE": {
+      "NAME": "Name*",
+      "SIZE": "Size*",
+      "TYPE": "Type*",
+      "ITEMS-NUMBER": "Quantity*"
+    },
+    "ADD-ON": {
+      "NAME": "Name*",
+      "ITEMS-NUMBER": "Quantity*"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+<form [formGroup]="cheeseOrderForm" class="h-full order-form grid">
+    <div class="col-6">
+        <div class="grid">
+            <section class="col-12">
+                <h3>{{ 'ORDER-FORM.HEADERS.PERSONAL_INFORMATION' | translate }}</h3>
+                <cheese-personal-information [formControlInformation]="cheeseOrderForm.controls.personalInformation"></cheese-personal-information>
+                <h3>{{ 'ORDER-FORM.HEADERS.ADDRESS' | translate }}</h3>
+                <cheese-addess [formControlInformation]="cheeseOrderForm.controls.address"></cheese-addess>
+                <h3>{{ 'ORDER-FORM.HEADERS.CHEESE' | translate }}</h3>
+                <section formArrayName="cheeses">
+                    <ng-container
+                        *ngFor="let cheese of cheeseOrderForm.controls.cheeses.controls; let cheeseIndex = index">
+                        <div [formGroupName]="cheeseIndex" class="grid show-item">
+                            <div class="col-10">
+                                <div class="grid">
+                                    <div class="col-12 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="name">
+                                            {{ 'ORDER-FORM.CHEESE.NAME' | translate }}
+                                        </label>
+                                        <p-dropdown class="p-inputtext" [options]="cheeseName" optionLabel="name" [showClear]="true" placeholder="Select an item" formControlName="name" (onChange)="calculateCheesePrice(cheeseIndex)"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="grid">
+                                    <div class="col-4 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="size">
+                                            {{ 'ORDER-FORM.CHEESE.SIZE' | translate }}
+                                        </label>
+                                        <p-dropdown class="p-inputtext" [options]="cheeseSize" optionLabel="name" [showClear]="true" placeholder="Select an item" formControlName="size" (onChange)="calculateCheesePrice(cheeseIndex)"></p-dropdown>
+                                    </div>
+                                    <div class="col-4 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="type">
+                                            {{ 'ORDER-FORM.CHEESE.TYPE' | translate }}
+                                        </label>
+                                        <p-dropdown class="p-inputtext" [options]="cheeseType" optionLabel="name" [showClear]="true" placeholder="Select an item" formControlName="type" (onChange)="calculateCheesePrice(cheeseIndex)"></p-dropdown>
+                                    </div>
+                                    <div class="col-4 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="itemsNumber">
+                                            {{ 'ORDER-FORM.CHEESE.ITEMS-NUMBER' | translate }}
+                                        </label>
+                                        <p-inputNumber class="p-inputtext" [min]="1" [max]="10" formControlName="itemsNumber" (onBlur)="calculateCheesePrice(cheeseIndex)"></p-inputNumber>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="cheeseOrderForm.controls.cheeses.controls.length > 1" class="col-2 delete-item">
+                                <button pButton pRipple type="button" (click)="removeCheese(cheeseIndex)" label="Remove"
+                                    class="p-button-raised"></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button pButton pRipple type="button" (click)="addNewCheese()" label="Add"
+                        class="col-2 p-button-raised"></button>
+                </section>
+                <h3>{{ 'ORDER-FORM.HEADERS.ADD_ON' | translate }}</h3>
+                <section formGroupName="addOns">
+                    <ng-container
+                        *ngFor="let addOn of cheeseOrderForm.controls.addOns.controls; let addOnIndex = index">
+                        <div [formGroupName]="addOnIndex" class="grid show-item">
+                            <div class="col-10">
+                                <div class="grid">
+                                    <div class="col-8 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="name">
+                                            {{ 'ORDER-FORM.ADD-ON.NAME' | translate }}
+                                        </label>
+                                        <p-dropdown class="p-inputtext" [options]="addOnType" optionLabel="name" [showClear]="true" placeholder="Select an item" formControlName="name" (onChange)="calculateAddOnsPrice(addOnIndex)"></p-dropdown>
+                                    </div>
+                                    <div class="col-4 p-inputgroup">
+                                        <label class="p-inputgroup-addon" for="itemsNumber">
+                                            {{ 'ORDER-FORM.ADD-ON.ITEMS-NUMBER' | translate }}
+                                        </label>
+                                        <p-inputNumber class="p-inputtext" [min]="1" [max]="10" formControlName="itemsNumber" (onBlur)="calculateAddOnsPrice(addOnIndex)"></p-inputNumber>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="cheeseOrderForm.controls.addOns.controls.length > 1"  class="col-2 delete-item">
+                                <button pButton pRipple type="button" (click)="removeAddOn(addOnIndex)" label="Remove"
+                                    class="p-button-raised"></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <button pButton pRipple type="button" (click)="addNewAddOn()" label="Add"
+                        class="col-2 p-button-raised"></button>
+                </section>
+            </section>
+        </div>
+        <div class="split"></div>
+        <div class="grid">
+            <section class="col-12 text-lg text-right">
+                <div>{{ 'ORDER-FORM.HEADERS.PRICE' | translate }}</div>
+                <div>{{ cheeseOrderForm.controls.totalPrice.value | currency }}</div>
+            </section>
+            <section class="col-12">
+                <button pButton pRipple type="submit" (click)="save()" label="Save" class="p-button-raised"></button>
+            </section>
+        </div>
+    </div>
+    <div class="col-6">
+        <div *ngIf="cheeseOrderForm.controls.passToSummary.value" class="grid">
+            <div class="col-12">
+                <h2>{{ 'ORDER-FORM.HEADERS.SUMMARY' | translate }}</h2>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="p-inputgroup-addon">
+                            {{ cheeseOrderForm.controls.personalInformation.controls.name.value }} {{ cheeseOrderForm.controls.personalInformation.controls.surname.value }}
+                        </div>
+                        <div class="p-inputgroup-addon"> 
+                            {{ cheeseOrderForm.controls.address.controls.street.value }} {{ cheeseOrderForm.controls.address.controls.houseNumber.value }}<span *ngIf="cheeseOrderForm.controls.address.controls.flatNumber.value">/{{ cheeseOrderForm.controls.address.controls.flatNumber.value }}</span>,
+                            {{ cheeseOrderForm.controls.address.controls.zipCode.value }} {{ cheeseOrderForm.controls.address.controls.city.value }}
+                        </div>
+                        <div class="p-inputgroup-addon" *ngFor="let cheese of cheeseOrderForm.controls.cheeses.controls; let cheeseIndex = index">
+                            {{ cheese.value.name.name }}, {{ cheese.value.size.name}}, {{cheese.value.type.name}}, {{ cheese.value.itemsNumber}}   
+                        </div>
+                        <div class="p-inputgroup-addon" *ngFor="let addOn of cheeseOrderForm.controls.addOns.controls; let addOnIndex = index">
+                            {{ addOn.value.name.name }}, {{ addOn.value.itemsNumber}}   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

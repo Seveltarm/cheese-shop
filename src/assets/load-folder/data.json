@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "city": "New York",
+        "street": "1st street",
+        "houseNumber": "5",
+        "flatNumber": "4",
+        "zipCode": "12-121",
+        "cheese": "Oscypek",
+        "size": "Small",
+        "type": "Smoked",
+        "itemsNumber": 2,
+        "addOnName": "Crunberry",
+        "addOnNumber": 1,
+        "display": false
+    },
+    {
+        "id": 2,
+        "city": "Warsaw",
+        "street": "Uliczna",
+        "houseNumber": "5",
+        "zipCode": "12-121",
+        "cheese": "Bundz",
+        "size": "Medium",
+        "type": "Smoked",
+        "itemsNumber": 6,
+        "addOnName": "Crunberry",
+        "addOnNumber": 1,
+        "display": false
+    }
+]
